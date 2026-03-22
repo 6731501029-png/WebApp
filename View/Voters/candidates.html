@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="voters.css">
+  <title>Candidates • Voters • MFU Voting</title>
+</head>
+<body class="voters" data-page="candidates">
+  <nav class="navbar navbar-expand-lg navbar-dark voters-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand voters-brand d-flex align-items-center gap-2" href="dashboard.html"><span class="badge voters-badge">MFU</span><span>Voting</span></a>
+      <button class="navbar-toggler btn btn-soft py-1 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#votersNav" aria-controls="votersNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="votersNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="candidates.html">Candidates</a></li>
+          <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <span class="navbar-text small d-none d-md-inline">ผู้ใช้: <span data-auth-citizen></span></span>
+          <button class="btn btn-soft btn-sm" type="button" data-action="logout">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="voters-shell">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+        <div>
+          <h2 class="mb-1">Candidates & Policies</h2>
+          <div class="text-muted">เลือกผู้สมัครที่คุณต้องการ</div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-soft" href="results.html">ดูผลคะแนน</a>
+        </div>
+      </div>
+
+      <div class="alert voters-alert mb-3" data-candidates-banner></div>
+
+      <div class="row g-3">
+        <div class="col-12 col-lg-6">
+          <div class="glass p-3 candidate-card h-100">
+            <div class="d-flex gap-3">
+              <div class="candidate-avatar" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)">01</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <h5 class="mb-0">กานต์ กิตติคุณ</h5>
+                  <span class="badge text-bg-primary">พรรคก้าวใหม่</span>
+                </div>
+                <div class="text-muted small mb-2">รหัสผู้สมัคร <span class="kbd">C01</span></div>
+                <div class="text-muted small mb-1">นโยบายเด่น</div>
+                <ul class="mb-3">
+                  <li class="text-muted">ทุนการศึกษาเพื่อทุกคน</li>
+                  <li class="text-muted">ระบบขนส่งภายในมหาวิทยาลัย</li>
+                  <li class="text-muted">พื้นที่อ่านหนังสือ 24 ชม.</li>
+                </ul>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-accent" type="button" data-action="vote" data-candidate="C01">โหวตให้คนนี้</button>
+                  <a class="btn btn-soft" href="results.html">ดูผล</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="glass p-3 candidate-card h-100">
+            <div class="d-flex gap-3">
+              <div class="candidate-avatar" style="background:linear-gradient(135deg,#22c55e,#10b981)">02</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <h5 class="mb-0">นภา วัฒนศิริ</h5>
+                  <span class="badge text-bg-success">พรรคชุมชนเข้มแข็ง</span>
+                </div>
+                <div class="text-muted small mb-2">รหัสผู้สมัคร <span class="kbd">C02</span></div>
+                <div class="text-muted small mb-1">นโยบายเด่น</div>
+                <ul class="mb-3">
+                  <li class="text-muted">เพิ่มจุดคัดแยกขยะ</li>
+                  <li class="text-muted">โครงการสุขภาพใจ</li>
+                  <li class="text-muted">กิจกรรมเสริมทักษะอาชีพ</li>
+                </ul>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-accent" type="button" data-action="vote" data-candidate="C02">โหวตให้คนนี้</button>
+                  <a class="btn btn-soft" href="results.html">ดูผล</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="glass p-3 candidate-card h-100">
+            <div class="d-flex gap-3">
+              <div class="candidate-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">03</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <h5 class="mb-0">ธีร์ธวัช ปัญญา</h5>
+                  <span class="badge text-bg-warning">พรรคดิจิทัลเพื่อทุกคน</span>
+                </div>
+                <div class="text-muted small mb-2">รหัสผู้สมัคร <span class="kbd">C03</span></div>
+                <div class="text-muted small mb-1">นโยบายเด่น</div>
+                <ul class="mb-3">
+                  <li class="text-muted">Wi‑Fi ครอบคลุมทุกอาคาร</li>
+                  <li class="text-muted">ระบบแจ้งซ่อมออนไลน์</li>
+                  <li class="text-muted">ลดขั้นตอนงานเอกสาร</li>
+                </ul>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-accent" type="button" data-action="vote" data-candidate="C03">โหวตให้คนนี้</button>
+                  <a class="btn btn-soft" href="results.html">ดูผล</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="glass p-3 candidate-card h-100">
+            <div class="d-flex gap-3">
+              <div class="candidate-avatar" style="background:linear-gradient(135deg,#06b6d4,#6366f1)">04</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <h5 class="mb-0">พิมพ์ชนก ศรีสุวรรณ</h5>
+                  <span class="badge" style="background:rgba(99,102,241,.25); border:1px solid rgba(99,102,241,.35);">พรรคสวัสดิการนักศึกษา</span>
+                </div>
+                <div class="text-muted small mb-2">รหัสผู้สมัคร <span class="kbd">C04</span></div>
+                <div class="text-muted small mb-1">นโยบายเด่น</div>
+                <ul class="mb-3">
+                  <li class="text-muted">ขยายเวลาโรงอาหาร</li>
+                  <li class="text-muted">เพิ่มงบชมรม</li>
+                  <li class="text-muted">ระบบร้องเรียนติดตามผล</li>
+                </ul>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-accent" type="button" data-action="vote" data-candidate="C04">โหวตให้คนนี้</button>
+                  <a class="btn btn-soft" href="results.html">ดูผล</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4">
+    <div class="container voters-footer d-flex flex-column flex-md-row justify-content-between gap-2">
+      <div>MFU Election Voting (Candidates)</div>
+    </div>
+  </footer>
+
+  <script src="/Public/js/bootstrap.min.js"></script>
+  <script src="voters.js"></script>
+</body>
+</html>

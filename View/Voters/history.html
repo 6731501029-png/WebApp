@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="voters.css">
+  <title>History • Voters • MFU Voting</title>
+</head>
+<body class="voters" data-page="history">
+  <nav class="navbar navbar-expand-lg navbar-dark voters-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand voters-brand d-flex align-items-center gap-2" href="dashboard.html"><span class="badge voters-badge">MFU</span><span>Voting</span></a>
+      <button class="navbar-toggler btn btn-soft py-1 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#votersNav" aria-controls="votersNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="votersNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="candidates.html">Candidates</a></li>
+          <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
+          <li class="nav-item"><a class="nav-link active" href="history.html">History</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <span class="navbar-text small d-none d-md-inline">ผู้ใช้: <span data-auth-citizen></span></span>
+          <button class="btn btn-soft btn-sm" type="button" data-action="logout">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="voters-shell">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+        <div>
+          <h2 class="mb-1">Voting History</h2>
+          <div class="text-muted">ประวัติการโหวตของผู้ใช้งาน</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-soft" href="history.html">Refresh</a>
+          <a class="btn btn-soft" href="candidates.html">ไปหน้า Candidates</a>
+        </div>
+      </div>
+
+        <div class="glass p-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="text-muted small">ผู้ใช้: <span class="kbd" data-auth-citizen></span></div>
+          </div>
+          <div class="table-responsive">
+            <table class="table voters-table align-middle mb-0">
+            <thead>
+              <tr>
+                <th style="width:72px;">#</th>
+                <th>Timestamp</th>
+                <th style="width:120px;">Candidate</th>
+                <th>Name</th>
+                <th style="width:120px;">Status</th>
+              </tr>
+            </thead>
+            <tbody data-history-body></tbody>
+          </table>
+          </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4">
+    <div class="container voters-footer d-flex flex-column flex-md-row justify-content-between gap-2">
+      <div>MFU Election Voting (History)</div>
+    </div>
+  </footer>
+
+  <script src="/Public/js/bootstrap.min.js"></script>
+  <script src="voters.js"></script>
+</body>
+</html>

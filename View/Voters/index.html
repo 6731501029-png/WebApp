@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="voters.css">
+  <title>Voters • MFU Voting</title>
+</head>
+<body class="voters" data-page="index">
+  <main class="container d-flex align-items-center justify-content-center" style="min-height:100vh; padding: 40px 0;">
+    <div class="voters-hero" style="max-width: 920px; width: 100%;">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="badge voters-badge">MFU</span>
+        <span class="text-muted small">Election Voting app</span>
+      </div>
+      <h1 class="mb-2">Voters Pages</h1>
+      <p class="text-muted mb-3">รวมหน้าเว็บส่วนผู้มีสิทธิ์เลือกตั้ง</p>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <div class="glass p-3 h-100">
+            <div class="text-muted small mb-2">เริ่มต้น</div>
+            <div class="d-grid gap-2">
+              <a class="btn btn-accent" href="login.html">ไปหน้า Login</a>
+              <a class="btn btn-soft" href="dashboard.html">ไป Dashboard</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="glass p-3 h-100">
+            <div class="text-muted small mb-2">หน้าหลักอื่นๆ</div>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-soft" href="candidates.html">Candidates</a>
+              <a class="btn btn-soft" href="results.html">Results</a>
+              <a class="btn btn-soft" href="history.html">History</a>
+              <a class="btn btn-soft" href="logout.html">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/Public/js/bootstrap.min.js"></script>
+  <script src="voters.js"></script>
+</body>
+</html>
