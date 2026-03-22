@@ -1,0 +1,232 @@
+:root {
+    --mfu-maroon: #8c1515;
+    --mfu-gold: #fec260;
+    --bg1: #fff7f2;
+    --bg2: #ffffff;
+    --card: rgba(255, 255, 255, .92);
+    --border: rgba(140, 21, 21, .16);
+    --text: rgba(17, 24, 39, .96);
+    --muted: rgba(55, 65, 81, .80)
+}
+
+html,
+body {
+    height: 100%
+}
+
+body.voters {
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 15% 10%, rgba(140, 21, 21, .14), transparent 58%), radial-gradient(900px 520px at 85% 5%, rgba(254, 194, 96, .22), transparent 60%), radial-gradient(900px 520px at 50% 100%, rgba(140, 21, 21, .08), transparent 62%), linear-gradient(135deg, var(--bg1), var(--bg2));
+    background-attachment: fixed
+}
+
+body.voters a {
+    color: inherit
+}
+
+body.voters .text-muted {
+    color: var(--muted) !important
+}
+
+.voters-navbar {
+    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(140, 21, 21, .94), rgba(254, 194, 96, .28)) !important;
+    border-bottom: 1px solid rgba(254, 194, 96, .42)
+}
+
+.voters-brand {
+    font-weight: 700;
+    letter-spacing: .2px
+}
+
+.voters-shell {
+    min-height: calc(100vh - 72px);
+    padding-top: 84px;
+    padding-bottom: 48px
+}
+
+.glass {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 26px rgba(17, 24, 39, .10);
+    border-radius: 16px
+}
+
+.voters-hero {
+    padding: 22px;
+    border-radius: 18px;
+    background: radial-gradient(640px 320px at 18% 15%, rgba(140, 21, 21, .20), transparent 62%), radial-gradient(640px 320px at 82% 28%, rgba(254, 194, 96, .26), transparent 64%), rgba(255, 255, 255, .85);
+    border: 1px solid rgba(140, 21, 21, .14)
+}
+
+.voters-badge {
+    background: rgba(140, 21, 21, .10);
+    border: 1px solid rgba(140, 21, 21, .22);
+    color: rgba(140, 21, 21, .98)
+}
+
+.candidate-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    letter-spacing: .5px;
+    color: rgba(255, 255, 255, .95);
+    border: 1px solid rgba(17, 24, 39, .10)
+}
+
+.candidate-card {
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease
+}
+
+.candidate-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, .22);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, .28)
+}
+
+.btn-accent {
+    background: linear-gradient(135deg, var(--mfu-maroon), var(--mfu-gold));
+    border: 0;
+    color: #fff
+}
+
+.btn-accent:hover {
+    filter: brightness(1.06);
+    color: #fff
+}
+
+.btn-soft {
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid rgba(140, 21, 21, .18);
+    color: rgba(140, 21, 21, .98)
+}
+
+.btn-soft:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(140, 21, 21, .30);
+    color: rgba(140, 21, 21, 1)
+}
+
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, .96);
+    border: 1px solid rgba(140, 21, 21, .16);
+    color: rgba(17, 24, 39, .96)
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(254, 194, 96, .55);
+    box-shadow: 0 0 0 .25rem rgba(254, 194, 96, .16);
+    color: rgba(17, 24, 39, .98)
+}
+
+.form-control::placeholder {
+    color: rgba(107, 114, 128, .92)
+}
+
+.table.voters-table {
+    color: rgba(17, 24, 39, .92)
+}
+
+.table.voters-table thead th {
+    color: rgba(55, 65, 81, .92);
+    border-bottom-color: rgba(140, 21, 21, .12)
+}
+
+.table.voters-table td,
+.table.voters-table th {
+    border-top-color: rgba(140, 21, 21, .10)
+}
+
+.table.voters-table tbody tr:hover {
+    background: rgba(254, 194, 96, .12)
+}
+
+.alert.voters-alert {
+    background: rgba(245, 158, 11, .14);
+    border: 1px solid rgba(245, 158, 11, .28);
+    color: rgba(17, 24, 39, .94)
+}
+
+.alert.voters-success {
+    background: rgba(34, 197, 94, .14);
+    border: 1px solid rgba(34, 197, 94, .28);
+    color: rgba(17, 24, 39, .94)
+}
+
+.kbd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: .86rem;
+    padding: .15rem .45rem;
+    border-radius: .5rem;
+    background: rgba(254, 194, 96, .16);
+    border: 1px solid rgba(140, 21, 21, .18)
+}
+
+.voters-footer {
+    color: rgba(55, 65, 81, .75);
+    font-size: .92rem
+}
+
+/* Improve readability on maroon navbar */
+.voters-navbar .navbar-brand,
+.voters-navbar .nav-link,
+.voters-navbar .navbar-text {
+    color: rgba(255, 255, 255, .92) !important
+}
+
+.voters-navbar .nav-link.active {
+    color: rgba(254, 194, 96, .98) !important
+}
+
+.voters-navbar .nav-link:hover {
+    color: rgba(254, 194, 96, .92) !important
+}
+
+/* Ported idea from masters/IAM/fontend-vue/src/assets/scss/style.scss */
+.bg-login {
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #8c1515 28%, #fec260 62%, rgba(255, 255, 255, .90) 100%)
+}
+
+.border-radius-1 {
+    border-radius: 1rem
+}
+
+.mfu-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .22);
+    backdrop-filter: blur(8px);
+    font-weight: 800
+}
+
+/* Animation (ported from masters/IAM/fontend-vue/src/assets/css/animation.css) */
+.animate-spin {
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+    display: inline-block
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(359deg)
+    }
+}
