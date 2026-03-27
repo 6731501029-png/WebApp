@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates Login • MFU Voting</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #FAF7F4 0%, #F5EFE8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 860px;
+      width: 100%;
+      min-height: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(139,26,26,0.18);
+    }
+
+    /* Left Panel */
+    .login-panel-left {
+      background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-panel-left::before {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -80px; right: -80px;
+    }
+
+    .login-panel-left::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      bottom: -60px; left: -40px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .brand-logo {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Prompt', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .brand-name {
+      font-family: 'Prompt', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .left-title {
+      font-family: 'Prompt', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-info {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-info-title {
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+    }
+
+    .left-info-item {
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .left-info-item::before {
+      content: '•';
+      color: var(--accent-light);
+      margin-top: 1px;
+    }
+
+    /* Right Panel */
+    .login-panel-right {
+      background: #fff;
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toggle-tabs {
+      display: flex;
+      background: var(--bg-soft);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      background: none;
+      border-radius: 8px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn.active {
+      background: #fff;
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .form-title {
+      font-family: 'Prompt', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .form-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 650px) {
+      .login-wrap { grid-template-columns: 1fr; }
+      .login-panel-left { padding: 32px 28px; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrap">
+    <!-- Left -->
+    <div class="login-panel-left">
+      <div>
+        <div class="brand-row">
+          <div class="brand-logo">MFU</div>
+          <div class="brand-name">Election Voting App</div>
+        </div>
+        <div class="left-title">Candidates<br>Portal</div>
+        <p class="left-desc" style="margin-bottom:28px;">
+          จัดการโปรไฟล์และนโยบายของคุณ<br>ติดตามคะแนนโหวตแบบ Real-time
+        </p>
+      </div>
+      <div class="left-info">
+        <div class="left-info-title">คำแนะนำ</div>
+        <div class="left-info-item">Candidate ID: รหัสที่ได้รับจากระบบ</div>
+        <div class="left-info-item">สร้าง Password ครั้งแรกในหน้า Register</div>
+        <div class="left-info-item">1 บัญชีต่อผู้สมัคร 1 คนเท่านั้น</div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="login-panel-right">
+      <div class="toggle-tabs">
+        <button class="toggle-btn" onclick="showTab('login')">เข้าสู่ระบบ</button>
+        <button class="toggle-btn active" onclick="showTab('register')">ลงทะเบียน</button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="tab-register">
+        <div class="form-title">ลงทะเบียนผู้สมัคร</div>
+        <p class="form-subtitle">สร้างบัญชีด้วย Candidate ID ที่ได้รับ</p>
+
+        <div class="form-group">
+          <label class="form-label">Candidate ID</label>
+          <input class="form-input" type="text" placeholder="เช่น C01, C02 ..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">สร้าง Password</label>
+          <input class="form-input" type="password" placeholder="อย่างน้อย 8 ตัวอักษร" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">ยืนยัน Password</label>
+          <input class="form-input" type="password" placeholder="กรอก Password อีกครั้ง" />
+        </div>
+        <button class="btn btn-primary btn-lg">ลงทะเบียน</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="tab-login" style="display:none;">
+        <div class="form-title">เข้าสู่ระบบ</div>
+        <p class="form-subtitle">กรอก Candidate ID และ Password</p>
+
+        <div class="form-group">
+          <label class="form-label">Candidate ID</label>
+          <input class="form-input" type="text" placeholder="เช่น C01, C02 ..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="กรอก Password ของคุณ" />
+        </div>
+        <button class="btn btn-primary btn-lg" style="margin-top:4px;">เข้าสู่ระบบ</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tab) {
+      document.getElementById('tab-login').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById('tab-register').style.display = tab === 'register' ? 'block' : 'none';
+      document.querySelectorAll('.toggle-btn').forEach((b, i) => {
+        b.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+      });
+    }
+  </script>
+</body>
+</html>
