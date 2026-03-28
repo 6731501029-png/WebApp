@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Manage Candidates IDs</title>
+    <style>
+        body {
+            background: #f3e9e2;
+            font-family: system-ui, sans-serif;
+        }
+
+        /* top bar */
+        .topbar {
+            background: #9b1c1c;
+        }
+
+        /* toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: #e5e5e5;
+            border-radius: 20px;
+            transition: .3s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        input:checked+.slider {
+            background-color: #9b1c1c;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+        
+            /* badge */
+        .badge-active {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .badge-disabled {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .btn-red {
+            background: #9b1c1c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .btn-outline-red {
+            border: 1px solid #9b1c1c;
+            color: #9b1c1c;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar text-white px-6 py-3 flex gap-6 items-center">
+        <div class="font-bold text-lg">MFU Voting</div>
+        <div class="flex gap-3 text-sm">
+            <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Admin Dashboard</button>
+             <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Manage Candidates</button>
+              <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Mange Voter</button>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto p-6 space-y-6">
+    <div class="bg-white p-6 rounded shadow-sm space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="font-semibold">Manage Candidate IDs</h2>
+                <button class="btn-red">+ Add ID</button>
+            </div>
+
+            <div class="space-y-4">
+
+                <div class="flex justify-between items-center border-t pt-4">
+                    <img src="/img/ดาวน์โหลด.png" width="100">
+                    <div>
+                        <p class="font-medium">C-0001</p>
+                        <p class="text-xs text-gray-500">นายกคนที่ 1</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="badge-active">Active</span>
+                        <button class="btn-outline-red">Disable</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center border-t pt-4">
+                    <img src="/img/ดาวน์โหลด.png" width="100">
+                    <div>
+                        <p class="font-medium">C-0002</p>
+                        <p class="text-xs text-gray-500">นายกคนที่ 2</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="badge-active">Active</span>
+                        <button class="btn-outline-red">Disable</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center border-t pt-4">
+                    <img src="/img/ดาวน์โหลด.png" width="100">
+                    <div>
+                        <p class="font-medium">C-0003</p>
+                        <p class="text-xs text-gray-500">นายกคนที่ 3</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="badge-disabled">Disabled</span>
+                        <button class="btn-outline-red">Enable</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</body>
+
+</html>
