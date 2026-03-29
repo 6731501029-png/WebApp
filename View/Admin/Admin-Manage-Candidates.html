@@ -1,155 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Candidate IDs - MFU Voting</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Manage Candidates IDs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
+        :root {
+            /* โทนสีจากรูปภาพ (MFU Theme) */
+            --primary-deep-red: #6E1616;
+            --primary-crimson: #8B1C1C;
+            --primary-burnt-orange: #B56331;
+            --accent-red-muted: #823B3B;
+            --text-white: #FFFFFF;
+            --text-dark: #4F4F4A;
+            --bg-page: #FAF8F6;
+            --bg-card: #FFFFFF;
+            --border-light: #E0E0E0;
+        }
+
         body {
-            background: #f3e9e2;
-            font-family: system-ui, sans-serif;
+            background-color: var(--bg-page);
+            font-family: 'Sarabun', system-ui, sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
         }
 
-        /* top bar */
-        .topbar {
-            background: #9b1c1c;
+        /* --- Navbar Section --- */
+        .navbar {
+            background: linear-gradient(90deg, var(--primary-deep-red) 0%, var(--primary-crimson) 40%, var(--primary-burnt-orange) 100%);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
-        /* toggle switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 46px;
-            height: 24px;
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .switch input {
-            display: none;
+        .navbar-brand-box {
+            background-color: var(--accent-red-muted);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background-color: #e5e5e5;
+        .navbar-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--text-white);
+            color: var(--text-white);
+            padding: 5px 15px;
             border-radius: 20px;
-            transition: .3s;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            top: 3px;
-            background: white;
-            border-radius: 50%;
-            transition: .3s;
+        .logout-btn:hover {
+            background-color: var(--text-white);
+            color: var(--primary-crimson);
         }
 
-        input:checked+.slider {
-            background-color: #9b1c1c;
+        /* --- Layout --- */
+        .main-content {
+            padding: 100px 5% 40px;
+            /* เว้นที่ให้ Navbar */
         }
 
-        input:checked+.slider:before {
-            transform: translateX(22px);
-        }
-        
-            /* badge */
-        .badge-active {
-            background: #d1fae5;
-            color: #065f46;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .badge-disabled {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
+        /* --- Buttons --- */
         .btn-red {
-            background: #9b1c1c;
+            background-color: var(--primary-crimson);
             color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-red:hover {
+            background-color: var(--primary-deep-red);
+            box-shadow: 0 2px 8px rgba(110, 22, 22, 0.3);
         }
 
         .btn-outline-red {
-            border: 1px solid #9b1c1c;
-            color: #9b1c1c;
-            padding: 4px 10px;
+            border: 1px solid var(--primary-crimson);
+            color: var(--primary-crimson);
+            background-color: transparent;
+            padding: 6px 14px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline-red:hover {
+            background-color: var(--primary-crimson);
+            color: white;
+        }
+
+        /* --- Badges --- */
+        .badge-active {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-disabled {
+            background-color: #fee2e2;
+            color: var(--primary-deep-red);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- Candidate List --- */
+        .candidate-row {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .candidate-row:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-color: var(--border-light);
+            border: 1px solid #eee;
         }
     </style>
 </head>
 
 <body>
-    <div class="topbar text-white px-6 py-3 flex gap-6 items-center">
-        <div class="font-bold text-lg">MFU Voting</div>
-        <div class="flex gap-3 text-sm">
-            <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Admin Dashboard</button>
-             <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Manage Candidates</button>
-              <button style="margin-left:auto; background-color:gold; border:none; padding:5px 12px; border-radius:6px; font-weight:bold;">Mange Voter</button>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <div class="navbar-brand-box">MFU</div>
+            <div class="navbar-title">Voting</div>
+            <a class="nav-link" href="/WebApp/View/Admin/Admin-Dashboard.html">Admin Dashboard</a>
+            <a class="nav-link active" href="/WebApp/View/Admin/Admin-Manage-Candidates.html">Manage Candidates</a>
+            <a class="nav-link" href="/WebApp/View/Admin/Admin-Manage-voter.html">Manage Voter</a>
+        </div>
+        <div class="navbar-right">
+            <a class="logout-btn" href="/WebApp/View/Admin/Admin-login.html">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="section-container">
+
+            <div class="card space-y-4">
+
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold" style="color: var(--primary-deep-red);">Manage Candidate IDs</h2>
+                    <button class="btn-red">+ Add ID</button>
+                </div>
+
+                <div class="flex flex-col">
+
+                    <div class="candidate-row">
+                        <div class="flex items-center gap-5">
+                            <img src="/WebApp/View/Admin/img/ดาวน์โหลด.png" alt="Candidate 1" class="candidate-img"
+                                onerror="this.style.display='none'">
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">C-0001</p>
+                                <p class="text-sm text-gray-500 mt-1">นายกคนที่ 1</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="badge-active">Active</span>
+                            <button class="btn-outline-red">Disable</button>
+                        </div>
+                    </div>
+
+                    <div class="candidate-row">
+                        <div class="flex items-center gap-5">
+                            <img src="/WebApp/View/Admin/img/ดาวน์โหลด.png" alt="Candidate 2" class="candidate-img"
+                                onerror="this.style.display='none'">
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">C-0002</p>
+                                <p class="text-sm text-gray-500 mt-1">นายกคนที่ 2</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="badge-active">Active</span>
+                            <button class="btn-outline-red">Disable</button>
+                        </div>
+                    </div>
+
+                    <div class="candidate-row">
+                        <div class="flex items-center gap-5">
+                            <img src="/WebApp/View/Admin/img/ดาวน์โหลด.png" alt="Candidate 3" class="candidate-img"
+                                onerror="this.style.display='none'">
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">C-0003</p>
+                                <p class="text-sm text-gray-500 mt-1">นายกคนที่ 3</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="badge-disabled">Disabled</span>
+                            <button class="btn-outline-red">Enable</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="max-w-6xl mx-auto p-6 space-y-6">
-    <div class="bg-white p-6 rounded shadow-sm space-y-4">
-            <div class="flex justify-between items-center">
-                <h2 class="font-semibold">Manage Candidate IDs</h2>
-                <button class="btn-red">+ Add ID</button>
-            </div>
-
-            <div class="space-y-4">
-
-                <div class="flex justify-between items-center border-t pt-4">
-                    <img src="/img/ดาวน์โหลด.png" width="100">
-                    <div>
-                        <p class="font-medium">C-0001</p>
-                        <p class="text-xs text-gray-500">นายกคนที่ 1</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="badge-active">Active</span>
-                        <button class="btn-outline-red">Disable</button>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-center border-t pt-4">
-                    <img src="/img/ดาวน์โหลด.png" width="100">
-                    <div>
-                        <p class="font-medium">C-0002</p>
-                        <p class="text-xs text-gray-500">นายกคนที่ 2</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="badge-active">Active</span>
-                        <button class="btn-outline-red">Disable</button>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-center border-t pt-4">
-                    <img src="/img/ดาวน์โหลด.png" width="100">
-                    <div>
-                        <p class="font-medium">C-0003</p>
-                        <p class="text-xs text-gray-500">นายกคนที่ 3</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="badge-disabled">Disabled</span>
-                        <button class="btn-outline-red">Enable</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 </body>
 
 </html>

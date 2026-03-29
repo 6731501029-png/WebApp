@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFU Admin Dashboard - Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* โทนสีหลักตามแบรนด์ */
+            --primary-deep-red: #6E1616;
+            /* แดงเข้มด้านซ้าย */
+            --primary-crimson: #8B1C1C;
+            /* แดงกลาง */
+            --primary-burnt-orange: #B56331;
+            /* ส้มอิฐด้านขวา */
+            --accent-red-muted: #823B3B;
+            /* แดงหม่นของปุ่ม MFU */
+            --text-white: #FFFFFF;
+            --text-dark: #4F4F4A;
+            --bg-page: #FAF8F6;
+            /* พื้นหลังหน้าจอที่ดูอุ่นขึ้น */
+            --bg-card: #FFFFFF;
+            --border-light: #E0E0E0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            font-family: 'Sarabun', system-ui, sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: linear-gradient(90deg, var(--primary-deep-red) 0%, var(--primary-crimson) 40%, var(--primary-burnt-orange) 100%);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-brand-box {
+            background-color: var(--accent-red-muted);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5px;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1.5px solid var(--text-white);
+            color: var(--text-white);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--text-white);
+            color: var(--primary-crimson);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            padding: 100px 5% 50px;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            color: var(--primary-deep-red);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .dashboard-subtitle {
+            color: var(--text-dark);
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* --- Toggle Switch CSS --- */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #d1d5db;
+            /* Gray 300 */
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked+.slider {
+            background-color: #10B981;
+            /* Green 500 */
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+
+        input:disabled+.slider {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Master Switch ใหญ่กว่าปกติ */
+        .master-switch {
+            width: 56px;
+            height: 30px;
+        }
+
+        .master-switch .slider:before {
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+        }
+
+        .master-switch input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        /* --- Table Section --- */
+        .table-section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .table-title {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--primary-deep-red);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-crimson);
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(139, 28, 28, 0.1);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 800px;
+        }
+
+        .results-table thead th {
+            background-color: var(--primary-deep-red);
+            color: var(--text-white);
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .results-table thead th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .results-table thead th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        .results-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .results-table tbody tr:hover {
+            background-color: #FDF8F8;
+        }
+
+        .results-table tbody td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: middle;
+        }
+
+        .pm-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pm-img {
+            width: 45px;
+            height: 45px;
+            background-color: var(--border-light);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-light);
+        }
+
+        .details-link {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--primary-burnt-orange);
+            text-decoration: none;
+            margin-top: 2px;
+            transition: color 0.2s;
+        }
+
+        .details-link:hover {
+            color: var(--primary-deep-red);
+            text-decoration: underline;
+        }
+
+        /* --- Pagination --- */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .page-item {
+            padding: 8px 14px;
+            cursor: pointer;
+            color: var(--text-dark);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            background-color: var(--bg-page);
+            border: 1px solid var(--border-light);
+        }
+
+        .page-item:hover:not(.active) {
+            background-color: var(--border-light);
+        }
+
+        .page-item.active {
+            background-color: var(--primary-crimson);
+            color: white;
+            font-weight: bold;
+            border-color: var(--primary-crimson);
+        }
+
+        /* Override Tailwind */
+        .text-red-900 {
+            color: var(--primary-deep-red) !important;
+        }
+
+        .text-red-800 {
+            color: var(--primary-crimson) !important;
+        }
+
+        /* Mobile adjustment for navbar */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar-title {
+                font-size: 1rem;
+            }
+
+            .master-switch-container {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <div class="navbar-brand-box">MFU</div>
+            <div class="navbar-title">Voting</div>
+            <div class="nav-links">
+                <a class="nav-link active" href="/WebApp/View/Admin/Admin-Dashboard.html">Admin Dashboard</a>
+                <a class="nav-link" href="/WebApp/View/Admin/Admin-Manage-Candidates.html">Manage Candidates</a>
+                <a class="nav-link" href="/WebApp/View/Admin/Admin-Manage-voter.html">Manage Voter</a>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <a class="logout-btn" href="/WebApp/View/Admin/Admin-login.html">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="section-container">
+
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Admin Dashboard</h1>
+                <p class="dashboard-subtitle">Election Management System of Mae Fah Luang University</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <p class="text-sm text-gray-500 mb-1">Total Eligible Voters</p>
+                    <p class="text-3xl font-bold text-red-800">1,240</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <p class="text-sm text-gray-500 mb-1">Total Candidates</p>
+                    <p class="text-3xl font-bold text-red-800">5</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <p class="text-sm text-gray-500 mb-1">Votes Cast</p>
+                    <p class="text-3xl font-bold text-red-800">876</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <p class="text-sm text-gray-500 mb-1">Voting Percentage</p>
+                    <p class="text-3xl font-bold text-red-800">70.64%</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-10">
+                <h2 class="text-xl font-bold text-red-900 mb-6">Voting Trend Overview</h2>
+                <div style="width: 100%; max-width: 900px; margin: 0 auto; height: 400px;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-6 rounded-xl shadow-sm border border-red-200 mb-10 flex flex-col md:flex-row justify-between items-center bg-red-50/20 master-switch-container">
+                <div>
+                    <h2 class="text-xl font-bold text-red-900 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        หน้าควบคุมสถานะระบบ (Control Panel)
+                    </h2>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">จัดการสถานะ เปิด-ปิด ระบบเลือกตั้งทั้งหมดของมหาวิทยาลัย
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 bg-white px-5 py-3 rounded-lg border border-gray-200 shadow-sm">
+                    <span class="font-bold text-gray-700" id="masterStatusText">สถานะระบบ: เปิด (Active)</span>
+                    <label class="toggle-switch master-switch">
+                        <input type="checkbox" id="masterSwitch" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <div class="table-title">
+                    <span>การจัดการสิทธิ์รายคน (Voter Control)</span>
+                </div>
+
+                <div class="search-container flex justify-between items-center">
+                    <input type="text" class="search-input" placeholder="🔍 ค้นหารหัสนักศึกษา หรือ ชื่อ...">
+                    <span class="text-sm text-gray-500">แสดงผล 1-3 จาก 1,240 รายการ</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th width="15%">Student ID</th>
+                                <th width="30%">Name</th>
+                                <th width="20%">School / Major</th>
+                                <th width="15%">Voted Status</th>
+                                <th width="20%" class="text-center">สิทธิ์การเลือกตั้ง (Enable/Disable)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">6431501xxx</td>
+                                <td>นาย กานต์ นามสมมติ</td>
+                                <td>IT / Software Engineering</td>
+                                <td><span
+                                        class="bg-green-100 text-green-700 py-1 px-3 rounded-full text-xs font-bold">Voted</span>
+                                </td>
+                                <td class="text-center">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" class="voter-switch" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">6531202xxx</td>
+                                <td>นางสาว สมหญิง รักเรียน</td>
+                                <td>Management / Accounting</td>
+                                <td><span class="bg-gray-100 text-gray-500 py-1 px-3 rounded-full text-xs font-bold">Not
+                                        Voted</span></td>
+                                <td class="text-center">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" class="voter-switch" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">6631105xxx</td>
+                                <td class="text-gray-400 line-through">นาย สายเสมอ ลางาน</td>
+                                <td class="text-gray-400">Law / Public Law</td>
+                                <td><span
+                                        class="bg-red-100 text-red-600 py-1 px-3 rounded-full text-xs font-bold">Suspended</span>
+                                </td>
+                                <td class="text-center">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" class="voter-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <span class="page-item">&laquo;</span>
+                    <span class="page-item active">1</span>
+                    <span class="page-item">2</span>
+                    <span class="page-item">3</span>
+                    <span class="text-gray-400 px-2">...</span>
+                    <span class="page-item">10</span>
+                    <span class="page-item">&raquo;</span>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h2 class="table-title">Historical Election Data</h2>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="🔍 ค้นหาตามปี พ.ศ. หรือชื่อแคนดิเดต...">
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Eligible Voters (M)</th>
+                                <th>Votes Cast (M)</th>
+                                <th>Turnout (%)</th>
+                                <th>Elected Candidate / Prime Minister</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6 ม.ค. 44</td>
+                                <td>42.7</td>
+                                <td>29.9</td>
+                                <td><span class="text-green-600 font-semibold">69.94%</span></td>
+                                <td>
+                                    <div class="pm-info">
+                                        <img src="https://ui-avatars.com/api/?name=Thaksin+Shinawatra&background=8B1C1C&color=fff"
+                                            class="pm-img" alt="Avatar">
+                                        <div>
+                                            <strong class="text-gray-800">นาย สายเสมอ ลางาน</strong>
+                                            <a href="#" class="details-link">View Details &rarr;</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6 ก.พ. 48</td>
+                                <td>44.5</td>
+                                <td>32.3</td>
+                                <td><span class="text-green-600 font-semibold">72.56%</span></td>
+                                <td>
+                                    <div class="pm-info">
+                                        <img src="https://ui-avatars.com/api/?name=Thaksin+Shinawatra&background=8B1C1C&color=fff"
+                                            class="pm-img" alt="Avatar">
+                                        <div>
+                                            <strong class="text-gray-800">นาย สายเสมอ ลางาน</strong>
+                                            <a href="#" class="details-link">View Details &rarr;</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>24 มี.ค. 62</td>
+                                <td>51.2</td>
+                                <td>38.2</td>
+                                <td><span class="text-green-600 font-semibold">74.69%</span></td>
+                                <td>
+                                    <div class="pm-info">
+                                        <img src="https://ui-avatars.com/api/?name=Prayut+Chan&background=B56331&color=fff"
+                                            class="pm-img" alt="Avatar">
+                                        <div>
+                                            <strong class="text-gray-800">นางสาว สมหญิง รักเรียน</strong>
+                                            <a href="#" class="details-link">View Details &rarr;</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>14 พ.ค. 66</td>
+                                <td>52.2</td>
+                                <td>39.5</td>
+                                <td><span class="text-green-600 font-semibold">75.22%</span></td>
+                                <td>
+                                    <div class="pm-info">
+                                        <img src="https://ui-avatars.com/api/?name=Pita+L&background=B56331&color=fff"
+                                            class="pm-img" alt="Avatar">
+                                        <div>
+                                            <strong class="text-gray-800">นางสาว สมหญิง รักเรียน</strong>
+                                            <a href="#" class="details-link">View Details &rarr;</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- ส่วนควบคุม Toggle Behavior ---
+        const masterSwitch = document.getElementById('masterSwitch');
+        const masterStatusText = document.getElementById('masterStatusText');
+        const voterSwitches = document.querySelectorAll('.voter-switch');
+
+        masterSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                masterStatusText.innerHTML = 'สถานะระบบ: <span class="text-green-600">เปิด (Active)</span>';
+                // ปลดล็อคปุ่มรายคน
+                voterSwitches.forEach(sw => sw.disabled = false);
+            } else {
+                masterStatusText.innerHTML = 'สถานะระบบ: <span class="text-red-600">ปิด (Disabled)</span>';
+                // ล็อคปุ่มรายคนเมื่อปิดระบบใหญ่
+                voterSwitches.forEach(sw => sw.disabled = true);
+            }
+        });
+
+        // --- กราฟ Chart.js (เดิม) ---
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['พ.ศ. 2544', 'พ.ศ. 2548', 'พ.ศ. 2550', 'พ.ศ. 2562', 'พ.ศ. 2566'],
+                datasets: [{
+                    label: 'Total Votes Cast (Millions)',
+                    data: [29.9, 32.3, 32.7, 38.2, 39.5],
+                    borderColor: 'rgba(139, 28, 28, 1)',
+                    backgroundColor: 'rgba(139, 28, 28, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#FFFFFF',
+                    pointBorderColor: 'rgba(139, 28, 28, 1)',
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#4F4F4A',
+                            font: { family: 'Sarabun' }
+                        },
+                        grid: { color: '#f0f0f0' }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        min: 20,
+                        max: 50,
+                        ticks: {
+                            color: '#4F4F4A',
+                            font: { family: 'Sarabun' }
+                        },
+                        grid: { color: '#e8e8e3' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { size: 14, family: 'Sarabun' },
+                            color: '#4F4F4A',
+                            usePointStyle: true,
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: 'rgba(79, 79, 74, 0.9)',
+                        titleFont: { family: 'Sarabun', size: 14 },
+                        bodyFont: { family: 'Sarabun', size: 13 },
+                        padding: 10,
+                        cornerRadius: 8
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

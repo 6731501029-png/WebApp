@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFU Administrator Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: #fcf6f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 550px;
+        }
+
+        /* --- Left Panel --- */
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(145deg, #7c1214 0%, #a62a22 40%, #d87030 100%);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .mfu-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .left-panel h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .left-panel p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: auto;
+            /* Pushes the info box to the bottom */
+            opacity: 0.9;
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .info-box ul {
+            list-style-type: none;
+        }
+
+        .info-box ul li {
+            font-size: 13px;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            font-weight: 300;
+        }
+
+        .info-box ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ffb888;
+        }
+
+        /* --- Right Panel --- */
+        .right-panel {
+            flex: 1.1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+            color: #555;
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            border-color: #a62a22;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        .toggle-password:hover {
+            opacity: 0.8;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: #777;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            color: #a62a22;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #91221b, #c45b29);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 15px rgba(166, 42, 34, 0.2);
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .right-panel {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="header-logo">
+                <span class="mfu-badge">MFU</span> Election Voting App
+            </div>
+
+            <h1>Administrator<br>Portal</h1>
+            <p>จัดระบบผู้สมัครและการลงคะแนนทั้งหมด<br>ดูรายงานและวิเคราะห์ข้อมูลแบบ Real-time</p>
+
+            <div class="info-box">
+                <h3>คำแนะนำ</h3>
+                <ul>
+                    <li>ชื่อผู้ใช้ Admin: ใช้ชื่อผู้ใช้ที่ได้รับมอบหมาย</li>
+                    <li>รหัสผ่าน (Password): กรอกรหัสผ่านของคุณ</li>
+                    <li>สิทธิ์การเข้าถึงเต็มรูปแบบสำหรับผู้ดูแลระบบ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h2>เข้าสู่ระบบผู้ดูแลระบบ</h2>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้ (Admin Username)</label>
+                    <input type="text" id="username" class="form-control" placeholder="กรอกชื่อผู้ใช้...">
+                </div>
+
+                <div class="form-group">
+                    <label for="">รหัสผ่าน (Password)</label>
+                    <div class="input-wrapper">
+                        <input type="password" class="form-control" placeholder="(กรอกรหัสผ่าน)">                                                  
+                    </div>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">ลืมรหัสผ่าน?</a>
+                </div>
+
+                <form>
+                    <button type="button" class="btn-submit"
+                        onclick="window.location.href='/WebApp/View/Admin/Admin-Dashboard.html'">Login</button>
+                </form>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
