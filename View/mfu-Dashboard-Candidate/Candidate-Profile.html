@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Candidate-Profile.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🏠 Dashboard</h2>
+        <div class="nav-links">
+            <a href="Candidate-Profile.html" class="active">Profile</a>
+            <a href="Candidate-Policy.html">Policy</a>
+            <a href="Candidate-History.html">Results</a>
+            <a href="#" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="main-row">
+
+            <!-- LEFT -->
+            <div class="card">
+                <div class="title">Welcome</div>
+                <p>เลือกเมนูด้านล่างเพื่อใช้งานระบบเลือกตั้ง</p>
+
+                <div class="actions">
+                    <div class="action-box" onclick="goPolicy()">
+                        <h3>📄 Policy</h3>
+                        <p>แก้ไขข้อมูลและนโยบาย</p>
+                    </div>
+
+                    <div class="action-box" onclick="goResults()">
+                        <h3>📊 Results</h3>
+                        <p>ดูผลคะแนนของคุณ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="user-card">
+                <div class="title">👤 User Info</div>
+
+                <p id="userInfo"></p>
+                <p id="laserInfo"></p>
+
+            </div>
+
+        </div>
+
+        <!-- GUIDE -->
+        <div class="steps-card">
+            <div class="steps-title">📘 วิธีการโหวต</div>
+
+            <ol class="steps">
+                <li>ไปที่หน้า Vote</li>
+                <li>ดูข้อมูลผู้สมัคร</li>
+                <li>เลือกผู้สมัครที่ต้องการ</li>
+                <li>ยืนยันการโหวต (ได้ครั้งเดียว)</li>
+                <li>ตรวจสอบผลใน History</li>
+            </ol>
+
+            <div class="section-sub">💡 คำแนะนำ</div>
+            <ul class="tips">
+                <li>อ่านนโยบายก่อนโหวต</li>
+                <li>โหวตแล้วแก้ไขไม่ได้</li>
+                <li>ห้ามแชร์ข้อมูลส่วนตัว</li>
+                <li>ตรวจสอบประวัติของคุณ</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="Candidate-Profile.js"></script>
+</body>
+
+</html>

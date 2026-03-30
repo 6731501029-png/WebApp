@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MFU Voting</title>
+    <link rel="stylesheet" href="Voting.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="logo">MFU</div>
+
+            <h2>Voting Login</h2>
+
+            <!-- Toggle -->
+            <div class="toggle">
+                <button class="active">Voter</button>
+                <button onclick="goCandidate()">Candidate</button>
+                <button onclick="goAdmin()">Admin</button>
+            </div>
+
+            <input id="cid" placeholder="Citizen ID">
+            <input id="laser" placeholder="Laser ID">
+
+            <button class="main-btn" onclick="login()">Login</button>
+
+        </div>
+    </div>
+
+    <script src="Voting.js"></script>
+</body>
+
+</html>

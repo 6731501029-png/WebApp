@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Candidate-Policy.css">
+    <title>My Policy</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>📄 Policy</h2>
+        <div class="nav-links">
+            <a href="Candidate-Profile.html">Profile</a>
+            <a href="Candidate-Policy.html" class="active">Policy</a>
+            <a href="Candidate-History.html">Results</a>
+            <a href="#" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>แก้ไขข้อมูลของคุณ</h3>
+
+            <input id="id" disabled>
+            <input id="name" placeholder="ชื่อผู้สมัคร">
+            <input id="img" placeholder="URL รูปภาพ">
+            <textarea id="policy" placeholder="นโยบาย"></textarea>
+
+            <button onclick="save()">Save</button>
+        </div>
+
+    </div>
+
+    <script src="Candidate-Policy.js"></script>
+</body>
+
+</html>
