@@ -1,35 +1,33 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Public/css/app.css">
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css">
   <link rel="stylesheet" href="voters.css">
-  <title>Results • Voters • MFU Voting</title>
+    <script src="/Public/js/app.js" defer></script>
+<title>Results • Voters • MFU Voting</title>
 </head>
 <body class="voters" data-page="results">
-  <nav class="navbar navbar-expand-lg navbar-dark voters-navbar fixed-top">
-    <div class="container">
-      <a class="navbar-brand voters-brand d-flex align-items-center gap-2" href="dashboard.html"><span class="badge voters-badge">MFU</span><span>Voting</span></a>
-      <button class="navbar-toggler btn btn-soft py-1 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#votersNav" aria-controls="votersNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="votersNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="candidates.html">Candidates</a></li>
-          <li class="nav-item"><a class="nav-link active" href="results.html">Results</a></li>
-          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
-        </ul>
-        <div class="d-flex align-items-center gap-2">
-          <span class="navbar-text small d-none d-md-inline">ผู้ใช้: <span data-auth-citizen></span></span>
-          <button class="btn btn-soft btn-sm" type="button" data-action="logout">Logout</button>
-        </div>
+    <nav class="mfu-navbar">
+    <div class="mfu-navbar__inner">
+      <a class="mfu-navbar__brand" href="index.html"><span class="mfu-badge">MFU</span><span>Voting</span></a>
+      <button class="mfu-navbar__toggle" type="button" aria-label="Toggle navigation" data-mfu-nav-toggle aria-expanded="false">≡</button>
+      <div class="mfu-navbar__menu" data-mfu-nav-menu>
+        <a class="mfu-navbar__link" href="dashboard.html">Dashboard</a>
+        <a class="mfu-navbar__link" href="candidates.html">Candidates</a>
+        <a class="mfu-navbar__link" href="results.html">Results</a>
+        <a class="mfu-navbar__link" href="history.html">History</a>
+      </div>
+      <div class="mfu-navbar__right">
+        <span class="mfu-pill">VOTERS</span>
+        <span class="mfu-navbar__meta mfu-hide-sm">ผู้ใช้: <span data-auth-citizen></span></span>
+        <button class="mfu-btn" type="button" data-action="logout" data-logout-href="login.html" data-clear="mfu_voters_auth,mfu_voters_vote,mfu_voters_votes_by_candidate">Logout</button>
       </div>
     </div>
   </nav>
-
-  <main class="voters-shell">
+<main class="voters-shell">
     <div class="container">
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
         <div>

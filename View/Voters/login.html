@@ -1,14 +1,33 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Public/css/app.css">
     <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
     <link rel="stylesheet" href="voters.css">
+  <script src="/Public/js/app.js" defer></script>
     <title>Voters Login • MFU Voting</title>
 </head>
 <body class="voters" data-page="login">
-    <main class="container d-flex align-items-center justify-content-center" style="min-height:100vh; padding: 40px 0;">
+      <nav class="mfu-navbar">
+    <div class="mfu-navbar__inner">
+      <a class="mfu-navbar__brand" href="index.html"><span class="mfu-badge">MFU</span><span>Voting</span></a>
+      <button class="mfu-navbar__toggle" type="button" aria-label="Toggle navigation" data-mfu-nav-toggle aria-expanded="false">≡</button>
+      <div class="mfu-navbar__menu" data-mfu-nav-menu>
+        <a class="mfu-navbar__link" href="dashboard.html">Dashboard</a>
+        <a class="mfu-navbar__link" href="candidates.html">Candidates</a>
+        <a class="mfu-navbar__link" href="results.html">Results</a>
+        <a class="mfu-navbar__link" href="history.html">History</a>
+      </div>
+      <div class="mfu-navbar__right">
+        <span class="mfu-pill">VOTERS</span>
+        <span class="mfu-navbar__meta mfu-hide-sm">ผู้ใช้: <span data-auth-citizen></span></span>
+        <button class="mfu-btn" type="button" data-action="logout" data-logout-href="login.html" data-clear="mfu_voters_auth,mfu_voters_vote,mfu_voters_votes_by_candidate">Logout</button>
+      </div>
+    </div>
+  </nav>
+    <main class="container d-flex align-items-center justify-content-center" style="min-height:calc(100vh - 64px); padding: 40px 0;">
         <div class="row g-4 align-items-center" style="max-width: 980px; width: 100%;">
             <div class="col-12 col-lg-6">
                 <div class="bg-login p-4 border-radius-1">
@@ -40,11 +59,11 @@
                     <form data-login-form>
                         <div class="mb-3">
                             <label class="form-label">Citizen ID</label>
-                            <input class="form-control" name="citizenId" inputmode="numeric" autocomplete="off" placeholder="13 หลัก" required>
+                            <input class="form-control" name="citizenId" inputmode="numeric" autocomplete="off" placeholder="13 หลัก">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Laser ID</label>
-                            <input class="form-control" name="laserId" autocomplete="off" placeholder="10–14 ตัว" required>
+                            <input class="form-control" name="laserId" autocomplete="off" placeholder="10–14 ตัว">
                         </div>
                         <button class="btn btn-accent w-100" type="submit">เข้าสู่ระบบ</button>
                     </form>

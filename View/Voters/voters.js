@@ -104,11 +104,11 @@
   };
 
   const bindLogin = () => {
-    const auth = getAuth();
-    if (auth) {
-      window.location.href = "dashboard.html";
-      return;
-    }
+    // const auth = getAuth();
+    // if (auth) {
+    //   window.location.href = "dashboard.html";
+    //   return;
+    // }
 
     const form = qs("[data-login-form]");
     if (!form) return;
@@ -129,8 +129,13 @@
       const citizenId = String(citizen?.value || "").trim();
       const laserId = String(laser?.value || "").trim();
 
-      if (!/^\d{13}$/.test(citizenId)) return setError("Citizen ID ต้องเป็นตัวเลข 13 หลัก");
-      if (!/^[A-Za-z0-9]{10,14}$/.test(laserId)) return setError("Laser ID ต้องเป็นตัวอักษร/ตัวเลข 10–14 ตัว");
+      // Allow login without filling anything. If user types something, validate it.
+      if (citizenId || laserId) {
+        if (citizenId && !/^\d{13}$/.test(citizenId)) return setError("Citizen ID ต้องเป็นตัวเลข 13 หลัก");
+        if (laserId && !/^[A-Za-z0-9]{10,14}$/.test(laserId)) return setError("Laser ID ต้องเป็นตัวอักษร/ตัวเลข 10–14 ตัว");
+        if (citizenId && !laserId) return setError("กรุณากรอก Laser ID");
+        if (laserId && !citizenId) return setError("กรุณากรอก Citizen ID");
+      }
 
       setAuth({ citizenId, laserId, loginAt: new Date().toISOString() });
       window.location.href = "dashboard.html";

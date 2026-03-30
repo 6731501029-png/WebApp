@@ -1,0 +1,209 @@
+:root {
+  --mfu-primary-900: #6e1616;
+  --mfu-primary-700: #8b1c1c;
+  --mfu-accent-600: #b56331;
+
+  --mfu-text: #1f1b16;
+  --mfu-muted: rgba(255, 255, 255, 0.88);
+  --mfu-muted-dark: rgba(31, 27, 22, 0.72);
+
+  --mfu-bg: #faf8f6;
+  --mfu-border: rgba(255, 255, 255, 0.16);
+  --mfu-border-dark: rgba(31, 27, 22, 0.12);
+
+  --mfu-radius: 14px;
+  --mfu-radius-sm: 10px;
+  --mfu-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  --mfu-navbar-h: 64px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Sarabun", "Prompt", "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--mfu-bg);
+  color: var(--mfu-text);
+}
+
+.mfu-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(
+    90deg,
+    var(--mfu-primary-900) 0%,
+    var(--mfu-primary-700) 45%,
+    var(--mfu-accent-600) 110%
+  );
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+}
+
+.mfu-navbar__inner {
+  min-height: var(--mfu-navbar-h);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mfu-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.mfu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.mfu-navbar__toggle {
+  margin-left: auto;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mfu-navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mfu-navbar__link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.mfu-navbar__link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.mfu-navbar__link.is-active {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.mfu-navbar__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mfu-navbar__meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mfu-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.mfu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mfu-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.mfu-center {
+  min-height: calc(100vh - var(--mfu-navbar-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.mfu-hide-sm {
+  display: inline;
+}
+
+@media (max-width: 820px) {
+  .mfu-hide-sm {
+    display: none;
+  }
+
+  .mfu-navbar__inner {
+    gap: 10px;
+  }
+
+  .mfu-navbar__toggle {
+    display: inline-flex;
+  }
+
+  .mfu-navbar__menu {
+    display: none;
+    width: 100%;
+    padding: 10px 0 4px;
+  }
+
+  .mfu-navbar.is-open .mfu-navbar__menu {
+    display: flex;
+  }
+
+  .mfu-navbar__right {
+    margin-left: 0;
+  }
+}

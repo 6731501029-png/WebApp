@@ -40,8 +40,8 @@ body.voters .text-muted {
 }
 
 .voters-shell {
-    min-height: calc(100vh - 72px);
-    padding-top: 84px;
+    min-height: calc(100vh - 64px);
+    padding-top: 24px;
     padding-bottom: 48px
 }
 
