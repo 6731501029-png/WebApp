@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Candidate-Policy.css">
+    <title>Policy</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>📄 Policy</h2>
+        <div class="nav-links">
+            <a href="Candidate-Profile.html">Home</a>
+            <a href="Candidate-Policy.html" class="active">Policy</a>
+            <a href="Candidate-Results.html">Results</a>
+            <a href="#" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Edit Your Information</h3>
+
+            <input id="id" readonly placeholder="Candidate ID">
+            <input id="name" placeholder="Candidate Name" required>
+            <input id="img" placeholder="Image URL" required>
+            <textarea id="policy" placeholder="Policy" required></textarea>
+
+            <button onclick="saveCandidate()">Save</button>
+            <button onclick="deleteCandidate()" style="margin-top:10px; background:#444;">Delete</button>
+
+        </div>
+
+        <div id="list" class="candidate-list"></div>
+
+    </div>
+
+    <script src="Candidate-Policy.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Admin-Results.css">
+    <title>Admin Dashboard - Candidates</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🛠 Admin Dashboard</h2>
+        <div class="nav-links">
+            <a href="Admin-Results.html">Results</a>
+            <a href="Admin-Candidate.html" class="active">Candidates</a>
+            <a href="Admin-Vote.html">Votes</a>
+            <a href="#" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>👥 Manage Candidates</h3>
+
+            <form id="candidateForm">
+                <input type="text" id="candidateName" placeholder="Candidate Name" required>
+                <input type="text" id="candidateParty" placeholder="Party" required>
+                <button type="submit">Add Candidate</button>
+            </form>
+
+            <div id="candidateList"></div>
+        </div>
+
+    </div>
+
+    <script src="Admin-Candidate.js"></script>
+</body>
+
+</html></content>
+<parameter name="filePath">c:\Users\kanta\OneDrive\Desktop\edit-admin\mfu-Admin\Admin-Candidate.html

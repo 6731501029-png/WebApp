@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Voting-Results.css">
+    <title>Results</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>📊 Results</h2>
+        <div class="nav-links">
+            <a href="Voting-Profile.html">Home</a>
+            <a href="Voting-Vote.html">Vote</a>
+            <a href="Voting-Results.html" class="active">Results</a>
+            <a href="Voting-History.html"">History</a>
+            <a href=" #" class="logout" onclick="logout()">Log Out</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="stats">
+            <div class="stat-box" id="totalVoters"></div>
+            <div class="stat-box" id="totalCandidates"></div>
+            <div class="stat-box" id="totalVotes"></div>
+            <div class="stat-box" id="percentVotes"></div>
+        </div>
+
+        <input id="search" placeholder="🔍 ค้นหาผลการลงคะแนน..." onkeyup="searchResult()">
+
+        <div class="card" id="resultList"></div>
+
+    </div>
+
+    <script src="Voting-Results.js"></script>
+</body>
+
+</html>

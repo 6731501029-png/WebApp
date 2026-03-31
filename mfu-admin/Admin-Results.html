@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Admin-Results.css">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🛠 Admin Dashboard</h2>
+        <div class="nav-links">
+            <a href="Admin-Results.html" class="active">Results</a>
+            <a href="Admin-Candidate.html">Candidates</a>
+            <a href="Admin-Vote.html">Votes</a>
+            <a href="#" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>⚠️ System Control</h3>
+
+            <button class="danger" onclick="resetAll()">
+                🔥 Reset All Data
+            </button>
+
+            <p style="margin-top:10px; color:#ccc;">
+                This will delete ALL data (candidates, votes, accounts, stats).
+            </p>
+        </div>
+
+    </div>
+
+    <script src="Admin-Results.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Voting-Profile.css">
+    <title>Home</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🏠 Home</h2>
+        <div class="nav-links">
+            <a href="Voting-Profile.html" class="active">Home</a>
+            <a href="Voting-Vote.html">Vote</a>
+            <a href="Voting-Results.html">Results</a>
+            <a href="Voting-History.html"">History</a>
+            <a href="#" class="logout" onclick="logout()">Log Out</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="main-row">
+
+            <div class="card">
+                <div class="title">Welcome</div>
+                <p>Please select an option below to proceed with the election system.</p>
+
+                <div class="actions">
+                    <div class="action-box" onclick="goVote()">
+                        <h3>🗳️ Vote</h3>
+                        <p>Select a candidate and cast your vote.</p>
+                    </div>
+
+                    <div class="action-box" onclick="goResults()">
+                        <h3>🕒 Results</h3>
+                        <p>View your voting results.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-card">
+                <div class="title">👤 User Information</div>
+
+                <p id="userInfo"></p>
+                <p id="laserInfo"></p>
+
+                <div class="status" id="voteStatus"></div>
+            </div>
+
+        </div>
+
+        <div class="steps-card">
+            <div class="steps-title">📘 Voting Instructions</div>
+
+            <ol class="steps">
+                <li>Go to the Vote page.</li>
+                <li>Review the candidate information.</li>
+                <li>Select your preferred candidate.</li>
+                <li>Confirm your vote (only one vote is allowed).</li>
+                <li>Check the result in the Results section.</li>
+            </ol>
+
+            <div class="section-sub">💡 Recommendations</div>
+            <ul class="tips">
+                <li>Carefully review policies before voting.</li>
+                <li>Votes cannot be modified once submitted.</li>
+                <li>Do not share your personal information.</li>
+                <li>Regularly verify your voting history.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="Voting-Profile.js"></script>
+</body>
+
+</html>

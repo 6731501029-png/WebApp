@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="Admin-Login.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="logo">MFU</div>
+
+            <h2>Admin Login</h2>
+
+            <div class="toggle">
+                <button onclick="goVoter()">Voter</button>
+                <button onclick="goCandidate()">Candidate</button>
+                <button class="active">Admin</button>
+            </div>
+
+            <input id="user" placeholder="Username">
+            <input id="adminID" placeholder="Admin ID">
+            <input id="pass" type="password" placeholder="Password">
+
+            <button class="main-btn" onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <script src="Admin-Login.js"></script>
+</body>
+
+</html>

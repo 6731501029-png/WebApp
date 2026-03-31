@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2b2b2b, #1a1a1a);
+    min-height: 100vh;
+    color: #fff;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #a00000, #7a0000);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.nav-links a.active {
+    opacity: 1;
+    border-bottom: 2px solid #fff;
+}
+
+.logout {
+    background: #e53935;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff0000, #a00000);
+    color: white;
+    cursor: pointer;
+}
+
+/* LIST GRID */
+.candidate-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* LIST CONTAINER */
+.candidate-list {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD */
+.item {
+    width: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* IMAGE */
+.item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* TEXT */
+.item h3 {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.item p {
+    font-size: 13px;
+    color: #ccc;
+}
+
+/* BUTTON */
+.item button {
+    margin-top: 10px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #e53935;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* DELETE BUTTON */
+.actions button:last-child {
+    background: #ff4d4f;
+    color: white;
+}
+
+.actions button:last-child:hover {
+    background: #d9363e;
+}
+

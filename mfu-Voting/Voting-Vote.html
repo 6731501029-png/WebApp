@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Voting-Vote.css">
+    <title>Vote</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🗳️ Vote</h2>
+        <div class="nav-links">
+            <a href="Voting-Profile.html">Home</a>
+            <a href="Voting-Vote.html" class="active">Vote</a>
+            <a href="Voting-Results.html">Results</a>
+            <a href="Voting-History.html"">History</a>
+            <a href=" #" class="logout" onclick="logout()">Log Out</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="grid" id="candidateList"></div>
+
+    </div>
+
+    <!-- POPUP -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <img id="modalImg" />
+            <p id="modalPolicy"></p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="Voting-Vote.js"></script>
+</body>
+
+</html>
